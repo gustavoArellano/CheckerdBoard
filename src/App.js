@@ -24,8 +24,8 @@ class App extends Component {
     }
     render () {
       return (
-        <div>
-          <input onChange={this.handleChange} placeholder="Enter your chess number here" />
+        <div className="container">
+          <input className="input" onChange={this.handleChange} placeholder="Enter your chess number here" />
             {this.state.n.map((i) => (
               <table >
                 <tr style={{display : "inline-block"}}>
