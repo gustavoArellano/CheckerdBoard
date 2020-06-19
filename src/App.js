@@ -1,26 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react'
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    state = {
+        n : [1, 2, 3, 4, 5, 6, 7, 8],
+        j : [1, 2, 3, 4, 5, 6, 7, 8]
+    }
+    takeUserInput = (z) => {
+        var array = []
+        for (var i = 0; i < z; i++){
+          array[i] = i + 1
+       }
+      this.setState({
+          n : array
+      })
+      this.setState({
+        j : array
+    })
+    console.log(this.state.j)
+    }
+    handleChange = (e) => {
+        console.log(e.target.value)
+        this.takeUserInput(e.target.value)
+    }
+    render () {
+      return (
+        <div>
+          <input onChange={this.handleChange} placeholder="Enter your chess number here" />
+            {this.state.n.map((i) => (
+              <table >
+                <tr style={{display : "inline-block"}}>
+                  {this.state.j.map((r) => {
+                    if ((i % 2) === 0) {
+                      if ((r % 2) === 0) {
+                        return (
+                          <th className="box-1"></th>
+                        )
+                          } else {
+                            return (
+                              <th className="box-2"></th>
+                            )
+                              }
+                    } else {
+                      if ((r % 2) === 0) {  
+                        return (
+                          <th className="box-2"></th>
+                        )
+                      } else {
+                        return (
+                          <th className="box-1"></th>
+                        )
+                      }
+                    }
+                  }
+                )}
+            </tr>
+          </table>
+        ))}
+      </div>
+    )
+  }
 }
-
 export default App;
